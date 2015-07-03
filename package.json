@@ -1,0 +1,19 @@
+{
+  "name": "copy-cat",
+  "version": "0.0.1",
+  "description": "A standalone server to mock various communications services for push messaging, email, and sms.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mmerkes/copy-cat.git"
+  },
+  "author": "Matt Merkes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mmerkes/copy-cat/issues"
+  },
+  "homepage": "https://github.com/mmerkes/copy-cat#readme"
+}
