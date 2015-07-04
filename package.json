@@ -2,9 +2,9 @@
   "name": "copy-cat",
   "version": "0.0.1",
   "description": "A standalone server to mock various communications services for push messaging, email, and sms.",
-  "main": "index.js",
+  "main": "./lib/server",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/mocha test"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,21 @@
   "bugs": {
     "url": "https://github.com/mmerkes/copy-cat/issues"
   },
-  "homepage": "https://github.com/mmerkes/copy-cat#readme"
+  "homepage": "https://github.com/mmerkes/copy-cat#readme",
+  "dependencies": {
+    "body-parser": "^1.13.1",
+    "express": "^4.13.0",
+    "express-route-validator": "^0.1.0",
+    "morgan": "^1.6.0",
+    "validator": "^3.40.1"
+  },
+  "devDependencies": {
+    "chai": "^3.0.0",
+    "gulp": "^3.9.0",
+    "gulp-istanbul": "^0.10.0",
+    "gulp-mocha": "^2.1.2",
+    "mocha": "^2.2.5",
+    "sinon": "^1.15.4",
+    "supertest": "^1.0.1"
+  }
 }
