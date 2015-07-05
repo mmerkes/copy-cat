@@ -5,7 +5,7 @@ var chai = require('chai'),
     request = require('supertest'),
     utils = require('../utils')
 
-describe('INTEGRATION /pushwhoosh/json/1.3 basic', function () {
+describe('INTEGRATION /pushwhoosh/json/1.3 default', function () {
   var app, url = '/pushwhoosh/json/1.3';
 
   before( function () {
@@ -26,16 +26,24 @@ describe('INTEGRATION /pushwhoosh/json/1.3 basic', function () {
   });
 
   describe('POST /createMessage', function () {
+    it('should return a 400 if body.request is undefined', function (done) {
+      request(app)
+        .post(url + '/createMessage')
+        .expect(400, done);
+    });
+
     it('should send a 400 if body.application is undefined', function (done) {
       request(app)
         .post(url + '/createMessage')
         .send({
-          auth: "API_ACCESS_TOKEN",
-          notifications: [{
-            send_date: "now",
-            ignore_user_timezone: true,
-            content: "Hello world!"
-          }]
+          request: {
+            auth: "API_ACCESS_TOKEN",
+            notifications: [{
+              send_date: "now",
+              ignore_user_timezone: true,
+              content: "Hello world!"
+            }]
+          }
         })
         .expect(400, function (err, res) {
           if (err) return done(err);
@@ -48,12 +56,14 @@ describe('INTEGRATION /pushwhoosh/json/1.3 basic', function () {
       request(app)
         .post(url + '/createMessage')
         .send({
-          application: "APPLICATION_CODE",
-          notifications: [{
-            send_date: "now",
-            ignore_user_timezone: true,
-            content: "Hello world!"
-          }]
+          request: {
+            application: "APPLICATION_CODE",
+            notifications: [{
+              send_date: "now",
+              ignore_user_timezone: true,
+              content: "Hello world!"
+            }]
+          }
         })
         .expect(400, function (err, res) {
           if (err) return done(err);
@@ -66,8 +76,10 @@ describe('INTEGRATION /pushwhoosh/json/1.3 basic', function () {
       request(app)
         .post(url + '/createMessage')
         .send({
-          application: "APPLICATION_CODE",
-          auth: "API_ACCESS_TOKEN"
+          request: {
+            application: "APPLICATION_CODE",
+            auth: "API_ACCESS_TOKEN"
+          }
         })
         .expect(400, function (err, res) {
           if (err) return done(err);
@@ -80,9 +92,11 @@ describe('INTEGRATION /pushwhoosh/json/1.3 basic', function () {
       request(app)
         .post(url + '/createMessage')
         .send({
-          application: "APPLICATION_CODE",
-          auth: "API_ACCESS_TOKEN",
-          notifications: []
+          request: {
+            application: "APPLICATION_CODE",
+            auth: "API_ACCESS_TOKEN",
+            notifications: []
+          }
         })
         .expect(400, function (err, res) {
           if (err) return done(err);
@@ -95,12 +109,14 @@ describe('INTEGRATION /pushwhoosh/json/1.3 basic', function () {
       request(app)
         .post(url + '/createMessage')
         .send({
-          application: "APPLICATION_CODE",
-          auth: "API_ACCESS_TOKEN",
-          notifications: [{
-            ignore_user_timezone: true,
-            content: "Hello world!"
-          }]
+          request: {
+            application: "APPLICATION_CODE",
+            auth: "API_ACCESS_TOKEN",
+            notifications: [{
+              ignore_user_timezone: true,
+              content: "Hello world!"
+            }]
+          }
         })
         .expect(400, function (err, res) {
           if (err) return done(err);
@@ -113,13 +129,15 @@ describe('INTEGRATION /pushwhoosh/json/1.3 basic', function () {
       request(app)
         .post(url + '/createMessage')
         .send({
-          application: "APPLICATION_CODE",
-          auth: "API_ACCESS_TOKEN",
-          notifications: [{
-            send_date: "now",
-            ignore_user_timezone: true,
-            content: "Hello world!"
-          }]
+          request: {
+            application: "APPLICATION_CODE",
+            auth: "API_ACCESS_TOKEN",
+            notifications: [{
+              send_date: "now",
+              ignore_user_timezone: true,
+              content: "Hello world!"
+            }]
+          }
         })
         .expect(200, function (err, res) {
           if (err) return done(err);
@@ -134,11 +152,19 @@ describe('INTEGRATION /pushwhoosh/json/1.3 basic', function () {
   });
 
   describe('POST /deleteMessage', function () {
+    it('should return a 400 if body.request is undefined', function (done) {
+      request(app)
+        .post(url + '/deleteMessage')
+        .expect(400, done);
+    });
+
     it('should send a 400 if auth is undefined', function (done) {
       request(app)
         .post(url + '/deleteMessage')
         .send({
-          message: 'MESSAGE_CODE'
+          request: {
+            message: 'MESSAGE_CODE'
+          }
         })
         .expect(400, function (err, res) {
           if (err) return done(err);
@@ -151,7 +177,9 @@ describe('INTEGRATION /pushwhoosh/json/1.3 basic', function () {
       request(app)
         .post(url + '/deleteMessage')
         .send({
-          auth: "API_ACCESS_TOKEN"
+          request: {
+            auth: "API_ACCESS_TOKEN"
+          }
         })
         .expect(400, function (err, res) {
           if (err) return done(err);
@@ -164,8 +192,10 @@ describe('INTEGRATION /pushwhoosh/json/1.3 basic', function () {
       request(app)
         .post(url + '/deleteMessage')
         .send({
-          auth: "API_ACCESS_TOKEN",
-          message: 'MESSAGE_CODE'
+          request: {
+            auth: "API_ACCESS_TOKEN",
+            message: 'MESSAGE_CODE'
+          }
         })
         .expect(200, function (err, res) {
           if (err) return done(err);
@@ -177,15 +207,23 @@ describe('INTEGRATION /pushwhoosh/json/1.3 basic', function () {
   });
 
   describe('POST /registerDevice', function () {
+    it('should return a 400 if body.request is undefined', function (done) {
+      request(app)
+        .post(url + '/registerDevice')
+        .expect(400, done);
+    });
+
     it('should send a 400 if body.application is undefined', function (done) {
       request(app)
         .post(url + '/registerDevice')
         .send({
-          push_token: "DEVICE_PUSH_TOKEN",
-          language: "en",
-          hwid: "hardware device id",
-          timezone: 3600,
-          device_type: 1
+          request: {
+            push_token: "DEVICE_PUSH_TOKEN",
+            language: "en",
+            hwid: "hardware device id",
+            timezone: 3600,
+            device_type: 1
+          }
         })
         .expect(400, function (err, res) {
           if (err) return done(err);
@@ -198,11 +236,13 @@ describe('INTEGRATION /pushwhoosh/json/1.3 basic', function () {
       request(app)
         .post(url + '/registerDevice')
         .send({
-          application: "APPLICATION_CODE",
-          language: "en",
-          hwid: "hardware device id",
-          timezone: 3600,
-          device_type: 1
+          request: {
+            application: "APPLICATION_CODE",
+            language: "en",
+            hwid: "hardware device id",
+            timezone: 3600,
+            device_type: 1
+          }
         })
         .expect(400, function (err, res) {
           if (err) return done(err);
@@ -215,11 +255,13 @@ describe('INTEGRATION /pushwhoosh/json/1.3 basic', function () {
       request(app)
         .post(url + '/registerDevice')
         .send({
-          application: "APPLICATION_CODE",
-          push_token: "DEVICE_PUSH_TOKEN",
-          language: "en",
-          timezone: 3600,
-          device_type: 1
+          request: {
+            application: "APPLICATION_CODE",
+            push_token: "DEVICE_PUSH_TOKEN",
+            language: "en",
+            timezone: 3600,
+            device_type: 1
+          }
         })
         .expect(400, function (err, res) {
           if (err) return done(err);
@@ -232,11 +274,13 @@ describe('INTEGRATION /pushwhoosh/json/1.3 basic', function () {
       request(app)
         .post(url + '/registerDevice')
         .send({
-          application: "APPLICATION_CODE",
-          push_token: "DEVICE_PUSH_TOKEN",
-          language: "en",
-          hwid: "hardware device id",
-          timezone: 3600
+          request: {
+            application: "APPLICATION_CODE",
+            push_token: "DEVICE_PUSH_TOKEN",
+            language: "en",
+            hwid: "hardware device id",
+            timezone: 3600
+          }
         })
         .expect(400, function (err, res) {
           if (err) return done(err);
@@ -249,12 +293,14 @@ describe('INTEGRATION /pushwhoosh/json/1.3 basic', function () {
       request(app)
         .post(url + '/registerDevice')
         .send({
-          application: "APPLICATION_CODE",
-          push_token: "DEVICE_PUSH_TOKEN",
-          language: "en",
-          hwid: "hardware device id",
-          timezone: 3600,
-          device_type: 100
+          request: {
+            application: "APPLICATION_CODE",
+            push_token: "DEVICE_PUSH_TOKEN",
+            language: "en",
+            hwid: "hardware device id",
+            timezone: 3600,
+            device_type: 100
+          }
         })
         .expect(400, function (err, res) {
           if (err) return done(err);
@@ -267,12 +313,14 @@ describe('INTEGRATION /pushwhoosh/json/1.3 basic', function () {
       request(app)
         .post(url + '/registerDevice')
         .send({
-          application: "APPLICATION_CODE",
-          push_token: "DEVICE_PUSH_TOKEN",
-          language: "en",
-          hwid: "hardware device id",
-          timezone: 3600,
-          device_type: 1
+          request: {
+            application: "APPLICATION_CODE",
+            push_token: "DEVICE_PUSH_TOKEN",
+            language: "en",
+            hwid: "hardware device id",
+            timezone: 3600,
+            device_type: 1
+          }
         })
         .expect(200, function (err, res) {
           if (err) return done(err);
@@ -310,13 +358,15 @@ describe('INTEGRATION /pushwhoosh/json/1.3 configured', function () {
       request(app)
         .post(url + '/createMessage')
         .send({
-          application: "APPLICATION_CODE",
-          auth: authTokens[0],
-          notifications: [{
-            send_date: "now",
-            ignore_user_timezone: true,
-            content: "Hello world!"
-          }]
+          request: {
+            application: "APPLICATION_CODE",
+            auth: authTokens[0],
+            notifications: [{
+              send_date: "now",
+              ignore_user_timezone: true,
+              content: "Hello world!"
+            }]
+          }
         })
         .expect(200, function (err, res) {
           if (err) return done(err);
@@ -331,13 +381,15 @@ describe('INTEGRATION /pushwhoosh/json/1.3 configured', function () {
       request(app)
         .post(url + '/createMessage')
         .send({
-          application: applicationCodes[0],
-          auth: "API_ACCESS_TOKEN",
-          notifications: [{
-            send_date: "now",
-            ignore_user_timezone: true,
-            content: "Hello world!"
-          }]
+          request: {
+            application: applicationCodes[0],
+            auth: "API_ACCESS_TOKEN",
+            notifications: [{
+              send_date: "now",
+              ignore_user_timezone: true,
+              content: "Hello world!"
+            }]
+          }
         })
         .expect(200, function (err, res) {
           if (err) return done(err);
@@ -353,14 +405,16 @@ describe('INTEGRATION /pushwhoosh/json/1.3 configured', function () {
       request(app)
         .post(url + '/createMessage')
         .send({
-          application: applicationCodes[0],
-          auth: authTokens[0],
-          notifications: [{
-            send_date: "now",
-            ignore_user_timezone: true,
-            content: "Hello world!",
-            devices: [dummyDevice].concat(devices)
-          }]
+          request: {
+            application: applicationCodes[0],
+            auth: authTokens[0],
+            notifications: [{
+              send_date: "now",
+              ignore_user_timezone: true,
+              content: "Hello world!",
+              devices: [dummyDevice].concat(devices)
+            }]
+          }
         })
         .expect(200, function (err, res) {
           if (err) return done(err);
@@ -380,14 +434,16 @@ describe('INTEGRATION /pushwhoosh/json/1.3 configured', function () {
       request(app)
         .post(url + '/createMessage')
         .send({
-          application: applicationCodes[0],
-          auth: authTokens[0],
-          notifications: [{
-            send_date: "now",
-            ignore_user_timezone: true,
-            content: "Hello world!",
-            devices: devices
-          }]
+          request: {
+            application: applicationCodes[0],
+            auth: authTokens[0],
+            notifications: [{
+              send_date: "now",
+              ignore_user_timezone: true,
+              content: "Hello world!",
+              devices: devices
+            }]
+          }
         })
         .expect(200, function (err, res) {
           if (err) return done(err);
@@ -405,13 +461,15 @@ describe('INTEGRATION /pushwhoosh/json/1.3 configured', function () {
       request(app)
         .post(url + '/createMessage')
         .send({
-          application: applicationCodes[0],
-          auth: authTokens[0],
-          notifications: [{
-            send_date: "now",
-            ignore_user_timezone: true,
-            content: "Hello world!"
-          }]
+          request: {
+            application: applicationCodes[0],
+            auth: authTokens[0],
+            notifications: [{
+              send_date: "now",
+              ignore_user_timezone: true,
+              content: "Hello world!"
+            }]
+          }
         })
         .expect(200, function (err, res) {
           if (err) return done(err);
@@ -430,8 +488,10 @@ describe('INTEGRATION /pushwhoosh/json/1.3 configured', function () {
       request(app)
         .post(url + '/deleteMessage')
         .send({
-          auth: authTokens[0],
-          message: 'MESSAGE_CODE'
+          request: {
+            auth: authTokens[0],
+            message: 'MESSAGE_CODE'
+          }
         })
         .expect(200, function (err, res) {
           if (err) return done(err);
@@ -446,8 +506,10 @@ describe('INTEGRATION /pushwhoosh/json/1.3 configured', function () {
       request(app)
         .post(url + '/deleteMessage')
         .send({
-          auth: "API_ACCESS_TOKEN",
-          message: messages[0]
+          request: {
+            auth: "API_ACCESS_TOKEN",
+            message: messages[0]
+          }
         })
         .expect(200, function (err, res) {
           if (err) return done(err);
@@ -462,8 +524,10 @@ describe('INTEGRATION /pushwhoosh/json/1.3 configured', function () {
       request(app)
         .post(url + '/deleteMessage')
         .send({
-          auth: authTokens[0],
-          message: messages[0]
+          request: {
+            auth: authTokens[0],
+            message: messages[0]
+          }
         })
         .expect(200, function (err, res) {
           if (err) return done(err);
@@ -479,12 +543,14 @@ describe('INTEGRATION /pushwhoosh/json/1.3 configured', function () {
       request(app)
         .post(url + '/registerDevice')
         .send({
-          application: "APPLICATION_CODE",
-          push_token: "DEVICE_PUSH_TOKEN",
-          language: "en",
-          hwid: "hardware device id",
-          timezone: 3600,
-          device_type: 1
+          request: {
+            application: "APPLICATION_CODE",
+            push_token: "DEVICE_PUSH_TOKEN",
+            language: "en",
+            hwid: "hardware device id",
+            timezone: 3600,
+            device_type: 1
+          }
         })
         .expect(200, function (err, res) {
           if (err) return done(err);
@@ -499,12 +565,14 @@ describe('INTEGRATION /pushwhoosh/json/1.3 configured', function () {
       request(app)
         .post(url + '/registerDevice')
         .send({
-          application: applicationCodes[0],
-          push_token: "DEVICE_PUSH_TOKEN",
-          language: "en",
-          hwid: "hardware device id",
-          timezone: 3600,
-          device_type: 1
+          request: {
+            application: applicationCodes[0],
+            push_token: "DEVICE_PUSH_TOKEN",
+            language: "en",
+            hwid: "hardware device id",
+            timezone: 3600,
+            device_type: 1
+          }
         })
         .expect(200, function (err, res) {
           if (err) return done(err);
