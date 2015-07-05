@@ -13,7 +13,8 @@ A standalone server to mock various communications services for push messaging, 
   pushwhoosh: { // optional, will not run mock pushwhoosh service if undefined
     application: ["APPLICATION_CODE"], // optional, checks for code match if set
     auth: ["API_ACCESS_TOKEN"], // optional, checks for token match if set
-    devices: ["DEVICE_TOKEN"] // optional, checks for device match if set
+    devices: ["DEVICE_TOKEN"], // optional, checks for device match if set on /createMessage
+    messages: ["MESSAGE_CODE"], // optional, checks for message match if set on /deleteMessage
   }
 }
 ```

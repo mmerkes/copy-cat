@@ -1,6 +1,6 @@
 {
   "name": "copy-cat",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A standalone server to mock various communications services for push messaging, email, and sms.",
   "main": "./lib/server",
   "scripts": {
