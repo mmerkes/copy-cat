@@ -4,6 +4,14 @@ A standalone server to mock various communications services for push messaging, 
 
 **NOTE: This repository is under active development, so expect to see additions coming in regularly. See [issues](https://github.com/mmerkes/copy-cat/issues) for upcoming features and services.**
 
+## Supported Services
+
+* Mailgun (coming soon)
+* PushWhoosh
+* Twilio (coming soon)
+
+See below for details on specific APIs supported.
+
 ## Basic Usage
 
 With `copy-cat`, you can start a standalone server to mock service endpoints, which can be run locally, deployed to the cloud (AWS, Heroku, etc.), or included in your test suite. While running test suites in development, you can hit mock API endpoints for the purpose of speed, cost, or a lack of support for test endpoints by the actual service.
@@ -23,13 +31,13 @@ var app = copycat({
 
 ### Running with Test Suite
 
-`copy-cat` can be used directly by your test suite to set up mock API endpoints while running the tests. **NOTE: While these mock APIs are meant to closely resemble behavior of actual APIs, behavior may differ** In cases where requests are critically invalid, routes send 400s regardless of actual API behavior for convenience. Thus, it is suggested that you test with actual APIs prior to deploying to production, and use `copy-cat` during development only.
+`copy-cat` can be used directly by your test suite to set up mock API endpoints while running the tests. **NOTE: While these mock APIs are meant to closely resemble behavior of actual APIs, behavior may differ.** In cases where requests are critically invalid, routes send 400s regardless of actual API behavior for convenience. Thus, it is suggested that you test with actual APIs prior to deploying to production, and use `copy-cat` during development only.
 
 ```javascript
 // messagesController.js
 var pw_url;
 if (process.env.NODE_ENV === 'development') {
-  pw_url = 'http://localhost:8000/pushwhoosh/json/1.3;
+  pw_url = 'http://localhost:8000/pushwhoosh/json/1.3';
 } else {
   pw_url = 'https://cp.pushwoosh.com/json/1.3';
 }
