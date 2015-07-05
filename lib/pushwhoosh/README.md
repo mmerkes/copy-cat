@@ -182,3 +182,32 @@
   "response": null
 }
 ```
+
+### Method /unregisterDevice API Example Response
+
+```javascript
+// On success
+{
+  "status_code": 200,
+  "status_message": "OK",
+  "response": null
+}
+// On invalid application code
+{
+  "status_code": 210,
+  "status_message": "Application not found",
+  "response": null
+}
+// On no hwid
+{
+  "status_code": 210,
+  "status_message": "No hwid given",
+  "response": null
+}
+// On unknown hwid
+{
+  "status_code": 200,
+  "status_message": "OK",
+  "response": null
+}
+```

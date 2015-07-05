@@ -331,6 +331,62 @@ describe('INTEGRATION /pushwhoosh/json/1.3 default', function () {
         })
     });
   });
+
+  describe('POST /unregisterDevice', function () {
+    it('should return a 400 if body.request is undefined', function (done) {
+      request(app)
+        .post(url + '/unregisterDevice')
+        .expect(400, done);
+    });
+
+    it('should send a 400 if body.application is undefined', function (done) {
+      request(app)
+        .post(url + '/unregisterDevice')
+        .send({
+          request: {
+            hwid: "hardware device id"
+          }
+        })
+        .expect(400, function (err, res) {
+          if (err) return done(err);
+          expect(res.body).to.have.property('error').that.contains('body.application');
+          return done();
+        })
+    });
+
+    it('should send a 400 if body.hwid is undefined', function (done) {
+      request(app)
+        .post(url + '/unregisterDevice')
+        .send({
+          request: {
+            application: "APPLICATION_CODE"
+          }
+        })
+        .expect(400, function (err, res) {
+          if (err) return done(err);
+          expect(res.body).to.have.property('error').that.contains('body.hwid');
+          return done();
+        })
+    });
+
+    it('should send a 200 with a status_code of 200 if successful', function (done) {
+      request(app)
+        .post(url + '/unregisterDevice')
+        .send({
+          request: {
+            application: "APPLICATION_CODE",
+            hwid: "hardware device id"
+          }
+        })
+        .expect(200, function (err, res) {
+          if (err) return done(err);
+          expect(res.body).to.have.property('status_code').that.equals(200);
+          expect(res.body).to.have.property('status_message').that.equals('OK');
+          expect(res.body).to.have.property('response').that.is.null;
+          return done();
+        })
+    });
+  });
 });
 
 describe('INTEGRATION /pushwhoosh/json/1.3 configured', function () {
@@ -572,6 +628,44 @@ describe('INTEGRATION /pushwhoosh/json/1.3 configured', function () {
             hwid: "hardware device id",
             timezone: 3600,
             device_type: 1
+          }
+        })
+        .expect(200, function (err, res) {
+          if (err) return done(err);
+          expect(res.body).to.have.property('status_code').that.equals(200);
+          expect(res.body).to.have.property('status_message').that.equals('OK');
+          expect(res.body).to.have.property('response').that.is.null;
+          return done();
+        })
+    });
+  });
+
+  describe('POST /unregisterDevice', function () {
+    it('should send a 200 with a 210 status_code and a status_message if the application code did not match config', function (done) {
+      request(app)
+        .post(url + '/unregisterDevice')
+        .send({
+          request: {
+            application: "APPLICATION_CODE",
+            hwid: "hardware device id"
+          }
+        })
+        .expect(200, function (err, res) {
+          if (err) return done(err);
+          expect(res.body).to.have.property('status_code').that.equals(210);
+          expect(res.body).to.have.property('status_message').that.equals('Application not found');
+          expect(res.body).to.have.property('response').that.is.null;
+          return done();
+        });
+    });
+
+    it('should send a 200 with a status_code of 200 if successful', function (done) {
+      request(app)
+        .post(url + '/unregisterDevice')
+        .send({
+          request: {
+            application: applicationCodes[0],
+            hwid: "hardware device id"
           }
         })
         .expect(200, function (err, res) {
