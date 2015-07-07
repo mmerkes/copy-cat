@@ -1,6 +1,6 @@
 {
   "name": "copy-cat",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A standalone server to mock various communications services for push messaging, email, and sms.",
   "main": "./lib/server",
   "scripts": {
@@ -39,6 +39,7 @@
   },
   "devDependencies": {
     "chai": "^3.0.0",
+    "coveralls": "^2.11.2",
     "gulp": "^3.9.0",
     "gulp-istanbul": "^0.10.0",
     "gulp-mocha": "^2.1.2",
