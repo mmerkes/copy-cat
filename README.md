@@ -2,6 +2,8 @@
 
 A standalone server to mock various communications services for push messaging, email, and sms. `copy-cat` is designed with the idea that while developing, we're constantly running our test suite with watch tasks or manually and hitting these services is often a side-effect of what we're really trying to test.
 
+[![Build Status](https://travis-ci.org/mmerkes/copy-cat.svg)](https://travis-ci.org/mmerkes/copy-cat)
+
 **NOTE: This repository is under active development, so expect to see additions coming in regularly. See [issues](https://github.com/mmerkes/copy-cat/issues) for upcoming features and services.**
 
 ## Supported Services
