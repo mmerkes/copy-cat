@@ -9,9 +9,11 @@ A standalone server to mock various communications services for push messaging, 
 
 ## Supported Services
 
+* MailChimp (coming soon)
 * Mailgun (coming soon)
 * PushWhoosh
 * Twilio (coming soon)
+* TBD (coming soon)
 
 See below for details on specific APIs supported.
 

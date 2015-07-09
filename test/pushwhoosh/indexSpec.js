@@ -3,7 +3,7 @@
 var chai = require('chai'),
     expect = chai.expect,
     request = require('supertest'),
-    utils = require('../utils')
+    utils = require('../utils');
 
 describe('INTEGRATION /pushwhoosh/json/1.3 default', function () {
   var app, url = '/pushwhoosh/json/1.3';
@@ -202,7 +202,7 @@ describe('INTEGRATION /pushwhoosh/json/1.3 default', function () {
           expect(res.body).to.have.property('status_code').that.equals(200);
           expect(res.body).to.have.property('status_message').that.equals('OK');
           return done();
-        })
+        });
     });
   });
 
@@ -229,7 +229,7 @@ describe('INTEGRATION /pushwhoosh/json/1.3 default', function () {
           if (err) return done(err);
           expect(res.body).to.have.property('error').that.contains('body.application');
           return done();
-        })
+        });
     });
 
     it('should send a 400 if body.push_token is undefined', function (done) {
@@ -248,7 +248,7 @@ describe('INTEGRATION /pushwhoosh/json/1.3 default', function () {
           if (err) return done(err);
           expect(res.body).to.have.property('error').that.contains('body.push_token');
           return done();
-        })
+        });
     });
 
     it('should send a 400 if body.hwid is undefined', function (done) {
@@ -267,7 +267,7 @@ describe('INTEGRATION /pushwhoosh/json/1.3 default', function () {
           if (err) return done(err);
           expect(res.body).to.have.property('error').that.contains('body.hwid');
           return done();
-        })
+        });
     });
 
     it('should send a 400 if body.device_type is undefined', function (done) {
@@ -286,7 +286,7 @@ describe('INTEGRATION /pushwhoosh/json/1.3 default', function () {
           if (err) return done(err);
           expect(res.body).to.have.property('error').that.contains('body.device_type');
           return done();
-        })
+        });
     });
 
     it('should send a 400 if body.device_type is invalid', function (done) {
@@ -306,7 +306,7 @@ describe('INTEGRATION /pushwhoosh/json/1.3 default', function () {
           if (err) return done(err);
           expect(res.body).to.have.property('error').that.contains('body.device_type');
           return done();
-        })
+        });
     });
 
     it('should send a 200 with a status_code of 200 if successful', function (done) {
@@ -328,7 +328,7 @@ describe('INTEGRATION /pushwhoosh/json/1.3 default', function () {
           expect(res.body).to.have.property('status_message').that.equals('OK');
           expect(res.body).to.have.property('response').that.is.null;
           return done();
-        })
+        });
     });
   });
 
@@ -351,7 +351,7 @@ describe('INTEGRATION /pushwhoosh/json/1.3 default', function () {
           if (err) return done(err);
           expect(res.body).to.have.property('error').that.contains('body.application');
           return done();
-        })
+        });
     });
 
     it('should send a 400 if body.hwid is undefined', function (done) {
@@ -366,7 +366,7 @@ describe('INTEGRATION /pushwhoosh/json/1.3 default', function () {
           if (err) return done(err);
           expect(res.body).to.have.property('error').that.contains('body.hwid');
           return done();
-        })
+        });
     });
 
     it('should send a 200 with a status_code of 200 if successful', function (done) {
@@ -384,7 +384,7 @@ describe('INTEGRATION /pushwhoosh/json/1.3 default', function () {
           expect(res.body).to.have.property('status_message').that.equals('OK');
           expect(res.body).to.have.property('response').that.is.null;
           return done();
-        })
+        });
     });
   });
 });
@@ -636,7 +636,7 @@ describe('INTEGRATION /pushwhoosh/json/1.3 configured', function () {
           expect(res.body).to.have.property('status_message').that.equals('OK');
           expect(res.body).to.have.property('response').that.is.null;
           return done();
-        })
+        });
     });
   });
 
@@ -674,7 +674,7 @@ describe('INTEGRATION /pushwhoosh/json/1.3 configured', function () {
           expect(res.body).to.have.property('status_message').that.equals('OK');
           expect(res.body).to.have.property('response').that.is.null;
           return done();
-        })
+        });
     });
   });
 });

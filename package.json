@@ -4,7 +4,7 @@
   "description": "A standalone server to mock various communications services for push messaging, email, and sms.",
   "main": "./lib/server",
   "scripts": {
-    "test": "./node_modules/.bin/mocha test --recursive",
+    "test": "./node_modules/.bin/gulp test",
     "test-travis": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec --recursive test && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "repository": {

@@ -1,8 +1,6 @@
 'use strict';
 
-var chai = require('chai'),
-    expect = chai.expect,
-    request = require('supertest');
+var request = require('supertest');
 
 describe('INTEGRATION server.js', function () {
   var app;

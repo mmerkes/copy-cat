@@ -2,14 +2,16 @@
 
 var gulp = require('gulp'),
     istanbul = require('gulp-istanbul'),
-    mocha = require('gulp-mocha');
+    mocha = require('gulp-mocha'),
+    jshint = require('gulp-jshint'),
+    stylish = require('jshint-stylish');
 
 var paths = {
   js: ['gulpfile.js', 'lib/**/*.js'],
   test: ['test/**/*.js']
 };
 
-gulp.task('test', function () {
+gulp.task('mocha', function () {
   return gulp.src(paths.test)
     .pipe(mocha());
 });
@@ -42,8 +44,17 @@ gulp.task('coverage', function (done) {
     });
 });
 
-gulp.task('watch-test', function () {
-  gulp.watch(Array.prototype.concat.apply([], [paths.js, paths.test]), ['test']);
+gulp.task('lint', function() {
+  return gulp.src(Array.prototype.concat.call([], paths.js, paths.test))
+    .pipe(jshint())
+    .pipe(jshint.reporter(stylish))
+    .pipe(jshint.reporter('fail'));
 });
+
+gulp.task('watch-test', function () {
+  gulp.watch(Array.prototype.concat.apply([], [paths.js, paths.test]), ['lint', 'mocha']);
+});
+
+gulp.task('test', ['lint', 'mocha']);
 
 gulp.task('default', ['watch-test']);
