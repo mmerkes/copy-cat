@@ -10,7 +10,7 @@ A standalone server to mock various communications services for push messaging, 
 ## Supported Services
 
 * MailChimp (coming soon)
-* Mailgun (coming soon)
+* Mailgun
 * PushWhoosh
 * Twilio (coming soon)
 * TBD (coming soon)
@@ -135,19 +135,25 @@ describe('INTEGRATION /messages', function () {
 
 ## Supported APIs
 
-### PushWhoosh
+### <a name="mailchimp"></a>MailChimp (coming soon)
+
+### <a name="mailgun"></a>Mailgun
+
+* [POST /messages](https://documentation.mailgun.com/api-sending.html#sending)
+* More forthcoming
+
+
+### <a name="pushwhoosh"></a>PushWhoosh
 
 * [/createMessage](https://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-Method-messages-create)
 * [/deleteMessage](https://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-Method-messages-delete)
 * [/registerDevice](https://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-MethodRegister)
 * [/unregisterDevice](https://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-MethodUnregister)
-
-### Mailgun
-
-* [POST /messages](https://documentation.mailgun.com/api-sending.html#sending)
 * More forthcoming
 
-### Twilio (coming soon)
+### <a name="twilio"></a>Twilio (coming soon)
+
+### TBD (coming soon)
 
 ## Contributing
 
