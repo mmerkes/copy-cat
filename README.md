@@ -115,12 +115,20 @@ describe('INTEGRATION /messages', function () {
 ```javascript
 {
   logFormat: 'dev', // Log format string passed into Morgan. Defaults to 'dev'.
-  port: 3001, // Port to run server on. Defaults to 3001.
+  port: 3001, // Optional. Port to run server on. Defaults to 3001.
+  startServer: true, // Optional. If true, will start server to listen on specified
+  // port or default port. If false, will not start server. Useful for testing.
   pushwhoosh: { // optional, will not run mock pushwhoosh service if undefined
     application: ["APPLICATION_CODE"], // optional, checks for code match if set
     auth: ["API_ACCESS_TOKEN"], // optional, checks for token match if set
     devices: ["DEVICE_TOKEN"], // optional, checks for device match if set on /createMessage
     messages: ["MESSAGE_CODE"], // optional, checks for message match if set on /deleteMessage
+  },
+  mailgun: { // optional, will not run mock mailgun service if undefined
+    domains: ['DOMAIN_NAME'], // optional, will invalidate any requests on domains that don't match
+    apiKeys: ['API_KEY'], // optional, will send 401 if present and API key doesn't match
+    // NOTE: apiKeys must be base64 string represention, i.e. MXBpOmpleS0xZDF4c3J6YMNmdGNuZjYtb2BxN2FpaTZqcWsyb25yOB==
+    versions: ['VERSION'], // optional, will invalidate any versions not matching if present. Defaults to ['v2', 'v3']
   }
 }
 ```
@@ -136,7 +144,7 @@ describe('INTEGRATION /messages', function () {
 
 ### Mailgun
 
-* [POST /messages](https://documentation.mailgun.com/api-sending.html#sending) (coming soon)
+* [POST /messages](https://documentation.mailgun.com/api-sending.html#sending)
 * More forthcoming
 
 ### Twilio (coming soon)

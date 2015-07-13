@@ -1,6 +1,6 @@
 {
   "name": "copy-cat",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A standalone server to mock various communications services for push messaging, email, and sms.",
   "main": "./lib/server",
   "scripts": {
@@ -33,7 +33,7 @@
   "dependencies": {
     "body-parser": "^1.13.1",
     "express": "^4.13.0",
-    "express-route-validator": "^0.1.0",
+    "express-route-validator": "^0.2.0",
     "morgan": "^1.6.0",
     "validator": "^3.40.1"
   },
@@ -44,6 +44,7 @@
     "gulp-istanbul": "^0.10.0",
     "gulp-mocha": "^2.1.2",
     "istanbul": "^0.3.17",
+    "lodash": "^3.10.0",
     "mocha": "^2.2.5",
     "sinon": "^1.15.4",
     "supertest": "^1.0.1"

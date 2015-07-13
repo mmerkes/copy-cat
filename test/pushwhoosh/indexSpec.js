@@ -2,15 +2,14 @@
 
 var chai = require('chai'),
     expect = chai.expect,
-    request = require('supertest'),
-    utils = require('../utils');
+    request = require('supertest');
 
 describe('INTEGRATION /pushwhoosh/json/1.3 default', function () {
   var app, url = '/pushwhoosh/json/1.3';
 
   before( function () {
     app = require('../../index')({
-      port: utils.getNextPort(),
+      startServer: false,
       pushwhoosh: {}
     });
   });
@@ -399,7 +398,7 @@ describe('INTEGRATION /pushwhoosh/json/1.3 configured', function () {
 
   before( function () {
     app = require('../../index')({
-      port: utils.getNextPort(),
+      startServer: false,
       pushwhoosh: {
         application: applicationCodes,
         auth: authTokens,

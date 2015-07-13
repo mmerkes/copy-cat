@@ -9,7 +9,7 @@ describe('UNIT pushwhoosh/validators.js', function () {
     require('../../lib/pushwhoosh/validators');
   });
 
-  it('should arePushwhooshNotifications as a validator for routeValidator', function () {
+  it('should add arePushwhooshNotifications as a validator for routeValidator', function () {
     expect(routeValidator._validators).to.have.property('arePushwhooshNotifications').that.is.a('function');
   });
 
