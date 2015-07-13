@@ -4,16 +4,16 @@ var chai = require('chai'),
     expect = chai.expect,
     routeValidator = require('express-route-validator');
 
-describe('UNIT pushwhoosh/validators.js', function () {
+describe('UNIT pushwoosh/validators.js', function () {
   before( function () {
-    require('../../lib/pushwhoosh/validators');
+    require('../../lib/pushwoosh/validators');
   });
 
-  it('should add arePushwhooshNotifications as a validator for routeValidator', function () {
-    expect(routeValidator._validators).to.have.property('arePushwhooshNotifications').that.is.a('function');
+  it('should add arePushwooshNotifications as a validator for routeValidator', function () {
+    expect(routeValidator._validators).to.have.property('arePushwooshNotifications').that.is.a('function');
   });
 
-  describe('arePushwhooshNotifications(notifications)', function () {
+  describe('arePushwooshNotifications(notifications)', function () {
     var validNotification = {
       send_date: "now",
       ignore_user_timezone: true,
@@ -26,12 +26,12 @@ describe('UNIT pushwhoosh/validators.js', function () {
     };
 
     it('should return true if notifications only contains valid PushWhoosh notification objects', function () {
-      var valid = routeValidator._validators.arePushwhooshNotifications([validNotification, validNotification]);
+      var valid = routeValidator._validators.arePushwooshNotifications([validNotification, validNotification]);
       expect(valid).to.be.true;
     });
 
     it('should return false if notifications is not an array', function () {
-      var valid = routeValidator._validators.arePushwhooshNotifications('banana');
+      var valid = routeValidator._validators.arePushwooshNotifications('banana');
       expect(valid).to.be.false;
     });
 
@@ -42,7 +42,7 @@ describe('UNIT pushwhoosh/validators.js', function () {
         content: "Hello world!",
         android_root_params: 'banana'
       };
-      var valid = routeValidator._validators.arePushwhooshNotifications([validNotification, invalidNotification]);
+      var valid = routeValidator._validators.arePushwooshNotifications([validNotification, invalidNotification]);
       expect(valid).to.be.false;
     });
 
@@ -53,7 +53,7 @@ describe('UNIT pushwhoosh/validators.js', function () {
         content: "Hello world!",
         ios_root_params: 'banana'
       };
-      var valid = routeValidator._validators.arePushwhooshNotifications([invalidNotification, validNotification]);
+      var valid = routeValidator._validators.arePushwooshNotifications([invalidNotification, validNotification]);
       expect(valid).to.be.false;
     });
 
@@ -64,7 +64,7 @@ describe('UNIT pushwhoosh/validators.js', function () {
         content: "Hello world!",
         platforms: [1, 3, 12]
       };
-      var valid = routeValidator._validators.arePushwhooshNotifications([invalidNotification]);
+      var valid = routeValidator._validators.arePushwooshNotifications([invalidNotification]);
       expect(valid).to.be.false;
     });
 
@@ -75,7 +75,7 @@ describe('UNIT pushwhoosh/validators.js', function () {
         content: "Hello world!",
         platforms: [0, 1, 3]
       };
-      var valid = routeValidator._validators.arePushwhooshNotifications([invalidNotification]);
+      var valid = routeValidator._validators.arePushwooshNotifications([invalidNotification]);
       expect(valid).to.be.false;
     });
   });

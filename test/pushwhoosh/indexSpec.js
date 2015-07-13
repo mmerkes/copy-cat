@@ -4,13 +4,13 @@ var chai = require('chai'),
     expect = chai.expect,
     request = require('supertest');
 
-describe('INTEGRATION /pushwhoosh/json/1.3 default', function () {
-  var app, url = '/pushwhoosh/json/1.3';
+describe('INTEGRATION /pushwoosh/json/1.3 default', function () {
+  var app, url = '/pushwoosh/json/1.3';
 
   before( function () {
     app = require('../../index')({
       startServer: false,
-      pushwhoosh: {}
+      pushwoosh: {}
     });
   });
 
@@ -19,7 +19,7 @@ describe('INTEGRATION /pushwhoosh/json/1.3 default', function () {
       .get('/version')
       .expect(200, function (err, res) {
         if (err) return done(err);
-        expect(res.body.activePlatforms).to.have.property('pushwhoosh').that.is.true;
+        expect(res.body.activePlatforms).to.have.property('pushwoosh').that.is.true;
         return done();
       });
   });
@@ -388,9 +388,9 @@ describe('INTEGRATION /pushwhoosh/json/1.3 default', function () {
   });
 });
 
-describe('INTEGRATION /pushwhoosh/json/1.3 configured', function () {
+describe('INTEGRATION /pushwoosh/json/1.3 configured', function () {
   var app,
-      url = '/pushwhoosh/json/1.3',
+      url = '/pushwoosh/json/1.3',
       applicationCodes = ['A91GE-ABD43'],
       authTokens = ['F5ZO2NtuDy4L1c5j3y1Qd52yMoEOj51z5Ma2tDtz1QqzUeEIXGtKGltn53bp3hG33L1lXZVTzKL4zX5NukBe'],
       devices = ["477A3B81-EAC1-4174-938D-180E6ECB0B39"],
@@ -399,7 +399,7 @@ describe('INTEGRATION /pushwhoosh/json/1.3 configured', function () {
   before( function () {
     app = require('../../index')({
       startServer: false,
-      pushwhoosh: {
+      pushwoosh: {
         application: applicationCodes,
         auth: authTokens,
         devices: devices,

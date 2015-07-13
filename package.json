@@ -1,6 +1,6 @@
 {
   "name": "copy-cat",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "A standalone server to mock various communications services for push messaging, email, and sms.",
   "main": "./lib/server",
   "scripts": {
@@ -20,7 +20,7 @@
     "copycat",
     "testing",
     "mock",
-    "pushwhoosh",
+    "pushwoosh",
     "mailgun",
     "twilio"
   ],

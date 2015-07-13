@@ -28,9 +28,10 @@ Running a standalone server is handy when you want all developers to hit a mock 
 ```javascript
 var copycat = require('copy-cat');
 
-// Starts a copy-cat server on the default port with PushWhoosh routes available
+// Starts a copy-cat server on the default port with PushWhoosh and Mailgun routes available
 var app = copycat({
-  pushwhoosh: {}
+  pushwoosh: {},
+  mailgun: {}
 });
 ```
 
@@ -42,7 +43,7 @@ var app = copycat({
 // messagesController.js
 var pw_url;
 if (process.env.NODE_ENV === 'development') {
-  pw_url = 'http://localhost:8000/pushwhoosh/json/1.3';
+  pw_url = 'http://localhost:8000/pushwoosh/json/1.3';
 } else {
   pw_url = 'https://cp.pushwoosh.com/json/1.3';
 }
@@ -88,17 +89,17 @@ describe('INTEGRATION /messages', function () {
   var mockServices;
   before( function () {
     if (process.env.NODE_ENV === 'development') {
-      // Our controller can now hit http://localhost:8000/pushwhoosh/json/1.3/createMessage
+      // Our controller can now hit http://localhost:8000/pushwoosh/json/1.3/createMessage
       // instead of actual API
       mockServices = copycat({
         port: 8000,
-        pushwhoosh: {} // Includes PushWhoosh routes with default configuration
+        pushwoosh: {} // Includes PushWhoosh routes with default configuration
       });
     }
   });
 
   describe('POST /messages', function () {
-    it('should post a push notification to pushwhoosh', function (done) {
+    it('should post a push notification to pushwoosh', function (done) {
       request(app)
         .post('/messages')
         .send({
@@ -118,7 +119,7 @@ describe('INTEGRATION /messages', function () {
   port: 3001, // Optional. Port to run server on. Defaults to 3001.
   startServer: true, // Optional. If true, will start server to listen on specified
   // port or default port. If false, will not start server. Useful for testing.
-  pushwhoosh: { // optional, will not run mock pushwhoosh service if undefined
+  pushwoosh: { // optional, will not run mock pushwoosh service if undefined
     application: ["APPLICATION_CODE"], // optional, checks for code match if set
     auth: ["API_ACCESS_TOKEN"], // optional, checks for token match if set
     devices: ["DEVICE_TOKEN"], // optional, checks for device match if set on /createMessage
@@ -143,7 +144,7 @@ describe('INTEGRATION /messages', function () {
 * More forthcoming
 
 
-### <a name="pushwhoosh"></a>PushWhoosh
+### <a name="pushwoosh"></a>PushWhoosh
 
 * [/createMessage](https://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-Method-messages-create)
 * [/deleteMessage](https://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-Method-messages-delete)
