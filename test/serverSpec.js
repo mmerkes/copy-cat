@@ -26,7 +26,7 @@ describe('INTEGRATION server.js', function () {
       .expect(404, done);
   });
 
-  it('should should not include PushWhoosh routes if not configured', function (done) {
+  it('should should not include PushWoosh routes if not configured', function (done) {
     request(app)
       .post('/pushwoosh/json/1.3/createMessage')
       .send({})

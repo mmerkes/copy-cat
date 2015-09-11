@@ -25,7 +25,7 @@ describe('UNIT pushwoosh/validators.js', function () {
       platforms: [1, 3]
     };
 
-    it('should return true if notifications only contains valid PushWhoosh notification objects', function () {
+    it('should return true if notifications only contains valid PushWoosh notification objects', function () {
       var valid = routeValidator._validators.arePushwooshNotifications([validNotification, validNotification]);
       expect(valid).to.be.true;
     });

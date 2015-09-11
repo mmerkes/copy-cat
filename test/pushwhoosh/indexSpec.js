@@ -14,7 +14,7 @@ describe('INTEGRATION /pushwoosh/json/1.3 default', function () {
     });
   });
 
-  it('should mark PushWhoosh as an active platform on GET /version when active', function (done) {
+  it('should mark PushWoosh as an active platform on GET /version when active', function (done) {
     request(app)
       .get('/version')
       .expect(200, function (err, res) {

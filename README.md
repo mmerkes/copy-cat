@@ -11,7 +11,7 @@ A standalone server to mock various communications services for push messaging, 
 
 * MailChimp (coming soon)
 * Mailgun
-* PushWhoosh
+* PushWoosh
 * Twilio (coming soon)
 * TBD (coming soon)
 
@@ -28,7 +28,7 @@ Running a standalone server is handy when you want all developers to hit a mock 
 ```javascript
 var copycat = require('copy-cat');
 
-// Starts a copy-cat server on the default port with PushWhoosh and Mailgun routes available
+// Starts a copy-cat server on the default port with PushWoosh and Mailgun routes available
 var app = copycat({
   pushwoosh: {},
   mailgun: {}
@@ -93,7 +93,7 @@ describe('INTEGRATION /messages', function () {
       // instead of actual API
       mockServices = copycat({
         port: 8000,
-        pushwoosh: {} // Includes PushWhoosh routes with default configuration
+        pushwoosh: {} // Includes PushWoosh routes with default configuration
       });
     }
   });
@@ -144,7 +144,7 @@ describe('INTEGRATION /messages', function () {
 * More forthcoming
 
 
-### <a name="pushwoosh"></a>PushWhoosh
+### <a name="pushwoosh"></a>PushWoosh
 
 * [/createMessage](https://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-Method-messages-create)
 * [/deleteMessage](https://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-Method-messages-delete)
