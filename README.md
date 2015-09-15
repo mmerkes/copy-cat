@@ -10,6 +10,7 @@ A standalone server to mock various communications services for push messaging, 
 ## Supported Services
 
 * MailChimp (coming soon)
+* Bandwidth / Catapult
 * Mailgun
 * PushWoosh
 * Twilio (coming soon)
@@ -119,6 +120,9 @@ describe('INTEGRATION /messages', function () {
   port: 3001, // Optional. Port to run server on. Defaults to 3001.
   startServer: true, // Optional. If true, will start server to listen on specified
   // port or default port. If false, will not start server. Useful for testing.
+  bandwidth: {
+
+  },
   pushwoosh: { // optional, will not run mock pushwoosh service if undefined
     application: ["APPLICATION_CODE"], // optional, checks for code match if set
     auth: ["API_ACCESS_TOKEN"], // optional, checks for token match if set
@@ -135,6 +139,11 @@ describe('INTEGRATION /messages', function () {
 ```
 
 ## Supported APIs
+
+### <a name="catapult"></a>Bandwidth / Catapult
+
+* [POST /v1/users/{userId}/messages](http://ap.bandwidth.com/docs/rest-api/messages/#resourcePOSTv1usersuserIdmessages)
+* [GET /v1/users/{userId}/messages/{messageId}](http://ap.bandwidth.com/docs/rest-api/messages/#resourceGETv1usersuserIdmessagesmessageId)
 
 ### <a name="mailchimp"></a>MailChimp (coming soon)
 

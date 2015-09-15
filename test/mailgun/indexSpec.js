@@ -178,7 +178,7 @@ describe('INTEGRATION /mailgun/:version default', function () {
   });
 });
 
-describe('INTEGRATION /mailgun/:version default', function () {
+describe('INTEGRATION /mailgun/:version configured', function () {
   var app,
       domains = ['example.com', 'test.com'],
       apiKeys = ['MXBpOmpleS0xZDF4c3J6YMNmdGNuZjYtb2BxN2FpaTZqcWsyb25yOB=='],

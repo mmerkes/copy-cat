@@ -1,6 +1,6 @@
 {
   "name": "copy-cat",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "A standalone server to mock various communications services for push messaging, email, and sms.",
   "main": "./lib/server",
   "scripts": {
@@ -34,7 +34,9 @@
     "body-parser": "^1.13.1",
     "express": "^4.13.0",
     "express-route-validator": "^0.2.0",
+    "lodash": "^3.10.1",
     "morgan": "^1.6.0",
+    "phone": "^1.0.5",
     "validator": "^3.40.1"
   },
   "devDependencies": {
