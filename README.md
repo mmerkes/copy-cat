@@ -121,7 +121,9 @@ describe('INTEGRATION /messages', function () {
   startServer: true, // Optional. If true, will start server to listen on specified
   // port or default port. If false, will not start server. Useful for testing.
   bandwidth: {
-
+    apiToken: "API_TOKEN", // optional, checks basic auth header when apiSecret is set as well
+    apiSecret: "API_SECRET", // optional, checks basic auth header when apiToken is set as well
+    userId: "USER_ID" // optional, checks for userId match in routes when set
   },
   pushwoosh: { // optional, will not run mock pushwoosh service if undefined
     application: ["APPLICATION_CODE"], // optional, checks for code match if set
