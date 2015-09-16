@@ -96,7 +96,7 @@ describe('INTEGRATION /bandwidth/v1 default', function () {
             if (err) return done(err);
             expect(res.headers).to.have.property('location');
             var location = res.headers.location;
-            var id = location.substr(location.length - 24);
+            var id = location.substr(location.length - 25);
             expect(db.store.bandwidth.getMessage(id)).to.exist;
             return done();
           });
@@ -136,7 +136,7 @@ describe('INTEGRATION /bandwidth/v1 default', function () {
             res.body.forEach( function (obj) {
               expect(obj).to.have.property('result').that.equals('accepted');
               expect(obj).to.have.property('location');
-              var id = obj.location.substr(obj.location.length - 24);
+              var id = obj.location.substr(obj.location.length - 25);
               expect(db.store.bandwidth.getMessage(id)).to.exist;
             });
             return done();
@@ -156,7 +156,7 @@ describe('INTEGRATION /bandwidth/v1 default', function () {
         .expect(201, function (err, res) {
           if (err) return done(err);
           var location = res.headers.location;
-          id = location.substr(location.length - 24);
+          id = location.substr(location.length - 25);
           return done();
         });
     });
@@ -271,7 +271,7 @@ describe('INTEGRATION /bandwidth/v1 configured', function () {
         .expect(201, function (err, res) {
           if (err) return done(err);
           var location = res.headers.location;
-          id = location.substr(location.length - 24);
+          id = location.substr(location.length - 25);
           url += id;
           return done();
         });
